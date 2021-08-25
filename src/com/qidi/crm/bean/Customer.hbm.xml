@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-8-16 14:47:28 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.qidi.crm.bean.Customer" table="CST_CUSTOMER">
+        <id name="cust_id" type="java.lang.Long">
+            <column name="CUST_ID" />
+            <generator class="sequence">
+            	<param name="sequence_name">cst_sequence</param>
+            </generator>
+        </id>
+        <property name="cust_name" type="java.lang.String">
+            <column name="CUST_NAME" />
+        </property>
+        <property name="cust_phone" type="java.lang.String">
+            <column name="CUST_PHONE" />
+        </property>
+        <property name="cust_mobile" type="java.lang.String">
+            <column name="CUST_MOBILE" />
+        </property>
+        <property name="cust_image" type="java.lang.String">
+        	<column name="CUST_IMAGE" />
+        </property>
+        
+        <!-- 多对一关系 -->
+        <many-to-one name="baseDictSource" class="com.qidi.crm.bean.BaseDict" lazy="false" fetch="join">
+            <column name="cust_source" />
+        </many-to-one>
+        <many-to-one name="baseDictIndustry" class="com.qidi.crm.bean.BaseDict" lazy="false" fetch="join">
+            <column name="cust_industry" />
+        </many-to-one>
+        <many-to-one name="baseDictLevel" class="com.qidi.crm.bean.BaseDict" lazy="false" fetch="join">
+            <column name="cust_level" />
+        </many-to-one>
+        
+        <!-- 配置与联系人的关系映射 -->
+        <set name="linkMans" cascade="delete" inverse="true">
+        	<!-- 添加级联删除（删除客户时，联系人也会删除） cascade="delete" -->
+        	<!-- 修改客户时联系人的客户信息丢失，放弃外键维护权（此时外键的修改只能在联系人操作当中）inverse="true"  -->
+        	<key column="lkm_cust_id"/>
+        	<one-to-many class="com.qidi.crm.bean.LinkMan"/>
+        </set>
+        
+    </class>
+</hibernate-mapping>

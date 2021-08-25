@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-8-12 11:22:58 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.qidi.crm.bean.User" table="SYS_USER">
+        <id name="user_id" type="java.lang.Long">
+            <column name="USER_ID" />
+            <generator class="sequence">
+            	<param name="sequence_name">sys_user_seq</param>
+            </generator>
+        </id>
+        <property name="user_code" type="java.lang.String">
+            <column name="USER_CODE" />
+        </property>
+        <property name="user_name" type="java.lang.String">
+            <column name="USER_NAME" />
+        </property>
+        <property name="user_password" type="java.lang.String">
+            <column name="USER_PASSWORD" />
+        </property>
+        <property name="user_state" type="java.lang.String">
+            <column name="USER_STATE" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-8-24 11:27:05 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.qidi.crm.bean.SaleVisit" table="SALE_VISIT">
+        <id name="visit_id" type="java.lang.String">
+            <column name="VISIT_ID" />
+            <generator class="uuid" />
+        </id>
+        <property name="visit_time" type="java.util.Date">
+            <column name="VISIT_TIME" />
+        </property>
+        <property name="visit_addr" type="java.lang.String">
+            <column name="VISIT_ADDR" />
+        </property>
+        <property name="visit_detail" type="java.lang.String">
+            <column name="VISIT_DETAIL" />
+        </property>
+        <property name="visit_nexttime" type="java.util.Date">
+            <column name="VISIT_NEXTTIME" />
+        </property>
+        <many-to-one name="customer" class="com.qidi.crm.bean.Customer" fetch="join">
+            <column name="visit_cust_id" />
+        </many-to-one>
+        <many-to-one name="user" class="com.qidi.crm.bean.User" fetch="join">
+            <column name="visit_user_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
